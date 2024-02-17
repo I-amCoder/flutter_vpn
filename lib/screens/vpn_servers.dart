@@ -1,3 +1,4 @@
+import 'package:counter_app/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 class VpnServers extends StatelessWidget {
@@ -5,8 +6,6 @@ class VpnServers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Text("Vpn Servers"),
-    );
+    return Center(child: MyText(text: "VPN Servers"));
   }
 }

@@ -1,5 +1,4 @@
-import 'package:counter_app/screens/home.dart';
-import 'package:counter_app/screens/vpn_servers.dart';
+import 'package:counter_app/core/providers/servers_provider.dart';
 import 'package:counter_app/core/providers/skeleton_provider.dart';
 import 'package:counter_app/widgets/layout.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SkeletonProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SkeletonProvider()),
+        ChangeNotifierProvider(create: (_) => ServerProvider())
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Consumer<SkeletonProvider>(
