@@ -11,10 +11,18 @@ class Home extends StatelessWidget {
     final serverProvider = Provider.of<ServerProvider>(context);
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const SizedBox(height: 40),
-          MyText(text: serverProvider.selectedServer),
-          const SizedBox(height: 40),
+          MyText(
+            text: serverProvider.selectedServer,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          MyText(
+              text: serverProvider.isConnected ? "Connected" : "Disconnected"),
+          const SizedBox(height: 20),
           SizedBox(
             height: 150,
             width: 150,
@@ -22,8 +30,11 @@ class Home extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(75.0))),
-              onPressed: () => {},
-              child: const Text("Connect"),
+              onPressed: () {
+                serverProvider.toggleConnect();
+              },
+              child:
+                  Text(serverProvider.isConnected ? "Disconnect" : "Connect"),
             ),
           ),
           const SizedBox(

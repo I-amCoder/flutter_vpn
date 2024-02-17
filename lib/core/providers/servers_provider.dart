@@ -7,17 +7,26 @@ class ServerProvider extends ChangeNotifier {
     "Server 3",
   ];
 
+  bool _isConnected = false;
+
   String _selectedServer;
 
   ServerProvider() : _selectedServer = "Server 1";
 
   List<String> get servers => _servers;
   String get selectedServer => _selectedServer;
+  bool get isConnected => _isConnected;
 
   void changeServer(String server) {
     if (_servers.contains(server)) {
       _selectedServer = server;
+      _isConnected = false;
       notifyListeners();
     }
+  }
+
+  void toggleConnect() {
+    _isConnected = !_isConnected;
+    notifyListeners();
   }
 }
